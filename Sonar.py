@@ -8,26 +8,42 @@ io.setwarnings(false)
 ECHO=8
 TRIG=10
 SoundSpeed = 33000
+	
+#Using pin ECH for Echo input from ultrasonic module
+#Using pin TRIG for Trigger output to the ultrasonic module
 
-io.setup(ECHO, io.in)
-io.setup(TRIG, io.out)
 
-io.output(TRIG, io.LOW)
-time.sleep(0.0000005)
-io.output(TRIG, io.HIGH)
-time.sleep(0.000001)
+def init(ECH,TRG):
+	
+	global ECHO=ECH
+	global TRIG=TRG
+	
+	io.setup(ECHO, io.in)
+	io.setup(TRIG, io.in)
+	
+	return
 
-if io.input(ECHO)==true:
-	start = time.time()
 
-if io.input(ECHO)==false:
-	stop = time.time()
+def dist():
+	#Applying 5us low and 10us high pulse to start measuring
+	io.output(TRIG, io.LOW)
+	time.sleep(0.0000005)
 
-total=stop-start
 
-distance = total*SoundSpeed
+	io.output(TRIG, io.HIGH)
+	time.sleep(0.000001)
+	
+	#ECHO pulse is proportional to the distance.
 
-print distance
+	if io.input(ECHO)==true:
+		start = time.time()
 
-io.cleanup()
+	if io.input(ECHO)==false:
+		stop = time.time()
+
+	total=stop-start
+
+	distance = total*SoundSpeed
+
+	return distance
 
