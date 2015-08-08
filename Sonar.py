@@ -14,9 +14,10 @@ SoundSpeed = 33000
 
 
 def init(ECH,TRG):
-	
-	global ECHO=ECH
-	global TRIG=TRG
+	global ECHO
+	ECHO=ECH
+	global TRIG	
+	TRIG=TRG
 	
 	io.setup(ECHO, io.in)
 	io.setup(TRIG, io.in)
