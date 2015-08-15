@@ -8,10 +8,9 @@ io.setwarnings(false)
 ECHO=8
 TRIG=10
 SoundSpeed = 33000
-	
+
 #Using pin ECH for Echo input from ultrasonic module
 #Using pin TRIG for Trigger output to the ultrasonic module
-
 
 def init(ECH,TRG):
 	global ECHO
