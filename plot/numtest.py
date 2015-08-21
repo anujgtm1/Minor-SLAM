@@ -10,9 +10,10 @@ for i in range(1,40):
 	#stores data in the shape [[a,b]]. a=x[0,0]. b=x[0,1]
 	y = np.fromstring(data, dtype = np.uint16 , sep = ' ')
 	if y.size == 2:
-		y = y.reshape(1,2)
-		x = np.append(x, y, axis=0)
-	print(y)
+		if y[1]!=0:
+			y = y.reshape(1,2)
+			x = np.append(x, y, axis=0)
+			print(y)
 #delete the initialised row [[0,0]]
 x=np.delete(x,(0), axis=0)
 pt.plotArray(x)
