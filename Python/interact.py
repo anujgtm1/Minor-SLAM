@@ -6,6 +6,17 @@ def observe():
 	x = np.empty(shape = (0,2), dtype=np.uint16)
 	ser = serial.Serial('/dev/ttyACM0',9600)
 	ser.write('0#')
+	data = ser.readline()
+	while data != '#':
+		y = np.fromstring(data, dtype = np.uint16 , sep = ' ')
+		if y.size == 2:
+			if y[1]!=0:
+				y = y.reshape(1,2)
+				x = np.append(x, y, axis=0)
+		data = ser.readline()
+	ser.close()
+	return x
+'''
 	for i in range(1,40):
 		data = ser.readline()
 		#print(data)
@@ -20,7 +31,8 @@ def observe():
 	ser.close()
 	#print(x)
 	return x
-	
+'''
+
 def command(s):
 	ser = serial.Serial('/dev/ttyACM0',9600)
 	ser.write(s)

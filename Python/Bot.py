@@ -4,13 +4,12 @@ class Bot():
 	import interact
 	import toCart
 	
-	
 	def __init__(self):
 		self.Map = np.empty(shape=(0,2), dtype=np.float32)
 		#Position : x, y, theta
 		self.Pos = np.array([[0,0,0]], dtype=np.float32)
 		self.Batch = np.empty(shape=(0,2), stype=np.float32)
-		a =  #measured practical distance travelled upon single pulse forward movement
+		a =  10 #measured practical distance travelled upon single pulse forward movement
 		return
 		
 	def plot(self):
@@ -24,6 +23,7 @@ class Bot():
 		#Cartesian conversion from Polar coordinates.
 		self.Batch = interact.observe()
 		toCart.toCartesian(self.Batch)
+		self.transform(self.Batch)
 		return
 	
 	def transform(self):
