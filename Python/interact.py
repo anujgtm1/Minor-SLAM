@@ -3,18 +3,25 @@ import serial
 import plot as pt
 
 def observe():
-	x = np.empty(shape = (0,2), dtype=np.uint16)
+	x = np.empty(shape = (0,2), dtype=np.float16)
 	ser = serial.Serial('/dev/ttyACM0',9600)
 	ser.write('0#')
-	data = ser.readline()
-	while data != '#':
-		y = np.fromstring(data, dtype = np.uint16 , sep = ' ')
+	for i in range(1,64):
+		data = ser.readline()
+		#if data == '0#':
+			#print('kaka3')
+			#break
+		y = np.fromstring(data, dtype = np.float16 , sep = ' ')
+		#print(data)
 		if y.size == 2:
 			if y[1]!=0:
 				y = y.reshape(1,2)
-				x = np.append(x, y, axis=0)
-		data = ser.readline()
+				print(y)
+                                x = np.append(x, y, axis=0)
+
+	ser.flushInput()
 	ser.close()
+	print(x)
 	return x
 '''
 	for i in range(1,40):
