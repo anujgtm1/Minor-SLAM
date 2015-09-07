@@ -15,4 +15,3 @@ for i in range(1,128):
         x = np.append(x,y,axis=0)
 x = np.delete(x,(0),axis=0)
 p.plotArray(x)
-kakakko kaixjcha
