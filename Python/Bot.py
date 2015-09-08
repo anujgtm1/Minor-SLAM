@@ -25,7 +25,8 @@ class Bot():
 		#get data into self.Batch
 		#Cartesian conversion from Polar coordinates.
 		self.Batch = interact.observe()
-		toCart.toCartesian(self.Batch)
+                toCart.toCartesian(self.Batch)
+                print(self.Batch)
 		self.transform()
 		return
 	
@@ -62,14 +63,14 @@ class Bot():
 		interact.mov_left()
 		#Does moving left have any effect on position?
 		
-		self.Pos[0,2] += 90
+		self.Pos[0,2] -= 90
 		return
 		
 	def right(self):
 		interact.mov_right()
 		#Does moving right have any effect on position?
 		
-		self.Pos[0,2] -= 90
+		self.Pos[0,2] += 90
 		return
 	
 	def reset(self):

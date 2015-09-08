@@ -3,24 +3,24 @@ import serial
 import plot as pt
 
 def observe():
-	x = np.empty(shape = (0,2), dtype=np.float16)
+	x = np.empty(shape = (0,2), dtype=np.float32)
 	ser = serial.Serial('/dev/ttyACM0',9600)
 	ser.write('0#')
 	for i in range(1,24):
 		data = ser.readline()
 		#if data == '0#':
 			#break
-		y = np.fromstring(data, dtype = np.float16 , sep = ' ')
+		y = np.fromstring(data, dtype = np.float32 , sep = ' ')
 		#print(data)
 		if y.size == 2:
 			if y[1]!=0:
 				y = y.reshape(1,2)
-				print(y)
                                 x = np.append(x, y, axis=0)
-
+                                print(y)
 	ser.flushInput()
 	ser.close()
-	print(x)
+        x[:,0] -= 90
+        x[:,1] = x[:,1]/np.cos(np.deg2rad(x[:,0]))
 	return x
 '''
 	for i in range(1,40):
