@@ -6,10 +6,9 @@ def observe():
 	x = np.empty(shape = (0,2), dtype=np.float16)
 	ser = serial.Serial('/dev/ttyACM0',9600)
 	ser.write('0#')
-	for i in range(1,64):
+	for i in range(1,24):
 		data = ser.readline()
 		#if data == '0#':
-			#print('kaka3')
 			#break
 		y = np.fromstring(data, dtype = np.float16 , sep = ' ')
 		#print(data)

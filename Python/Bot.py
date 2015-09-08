@@ -11,7 +11,7 @@ class Bot():
 		#Position : x, y, theta
 		self.Pos = np.array([[0,0,0]], dtype=np.float32)
 		self.Batch = np.empty(shape=(0,2), dtype=np.float32)
-		a =  10
+		self.a =  10
 		#measured practical distance travelled upon single pulse forward movement
 		return
 		
@@ -75,5 +75,5 @@ class Bot():
 	def reset(self):
 		self.Map = np.empty(shape=(0,2), dtype=np.float32)
 		self.Pos = np.array([[0,0,0]], dtype=np.float32)
-		self.Batch = np.empty(shape=(0,2), stype=np.float32)
+		self.Batch = np.empty(shape=(0,2), dtype=np.float32)
 		return
