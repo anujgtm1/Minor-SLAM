@@ -1,5 +1,8 @@
 import curses,serial
 import Bot
+import Sparser as sp
+import plot as pt
+import numpy as np
 
 ser = serial.Serial('/dev/ttyACM0',9600)
 a = Bot.Bot() #creates bot object
@@ -22,20 +25,23 @@ try:
             break
 
         elif char == ord('o'):
-            
             a.observe()
             a.append()
+
         elif char == ord('r'):
             a.reset()
 
         elif char == ord('p'):
-            
             a.plot()
+        
+        elif char == ord('s'):
+            np.savetxt('test.txt', a.Map, delimiter=',') 
 
         elif char == curses.KEY_RIGHT:
             # print doesn't work with curses, use addstr instead
             screen.addstr(0, 0, 'right')
             a.right()
+
         elif char == curses.KEY_LEFT:
             screen.addstr(0, 0, 'left')
             a.left()
