@@ -2,8 +2,7 @@ import numpy as np
 import plot as pt
 import interact
 import toCart
-
-
+import iqd
 class Bot():
 	
 	def __init__(self):
@@ -28,6 +27,7 @@ class Bot():
                 toCart.toCartesian(self.Batch)
                 print(self.Batch)
 		self.transform()
+                self.Batch = iqd.outlierRemoval(self.Batch,1)
 		return
 	
 	def transform(self):

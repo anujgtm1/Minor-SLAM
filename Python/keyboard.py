@@ -3,8 +3,9 @@ import Bot
 import Sparser as sp
 import plot as pt
 import numpy as np
+import iqd
 
-ser = serial.Serial('/dev/ttyACM0',9600)
+ser = serial.Serial('/dev/ttyACM1',9600)
 a = Bot.Bot() #creates bot object
 
 # get the curses screen window
