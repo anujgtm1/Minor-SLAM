@@ -3,14 +3,16 @@ import plot as pt
 import interact
 import toCart
 import iqd
+import line
 class Bot():
-	
 	def __init__(self):
 		self.Map = np.empty(shape=(0,2), dtype=np.float32)
 		#Position : x, y, theta
 		self.Pos = np.array([[0,0,0]], dtype=np.float32)
 		self.Batch = np.empty(shape=(0,2), dtype=np.float32)
 		self.a =  10
+                self.m = []
+                self.c = []
 		#measured practical distance travelled upon single pulse forward movement
 		return
 		
@@ -25,9 +27,12 @@ class Bot():
 		#Cartesian conversion from Polar coordinates.
 		self.Batch = interact.observe()
                 toCart.toCartesian(self.Batch)
-                print(self.Batch)
+                #print(self.Batch)
 		self.transform()
                 self.Batch = iqd.outlierRemoval(self.Batch,1)
+                [a1 , b1] = line.line(self.Batch)
+                self.m.append(a1)
+                self.c.append(b1)
 		return
 	
 	def transform(self):

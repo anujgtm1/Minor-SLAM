@@ -30,11 +30,11 @@ try:
             a.append()
 
         elif char == ord('i'):
-		for i in range(0, len(a.m)-1):
-			[flag, corner3] = corner.corner(a.m[i],a.c[i],a.m[i+1],a.c[i+1])
-                        if flag == True:
-				xycor = np.append(xycor,np.array(corner3),axis=0)
-		xycor = np.append(xycor,[xycor[0]],axis=0)
+		for i in range(0, a.m.shape[0]-1):
+			[flag, corner] = corner.corner(a.m[i],a.c[i],a.m[i+1],a.c[i+1])
+			if flag == True:
+				xycor = np.append(xycor,corner,axis=0)
+			xycor = np.append(xycor,xycor[0],axis=0)
 
         elif char == ord('r'):
             a.reset()
